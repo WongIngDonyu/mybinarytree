@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.function.Consumer;
 
 public class BinaryTree<E> implements AbstractBinaryTree<E>{
@@ -98,5 +100,38 @@ public class BinaryTree<E> implements AbstractBinaryTree<E>{
         if(rightChild!=null){
             rightChild.forEachInOrder(consumer);
         }
+    }
+
+    @Override
+    public List<AbstractBinaryTree<E>> DFS() {
+        List<AbstractBinaryTree<E>> result = new ArrayList<>();
+        DFS(this, result);
+        return result;
+    }
+    private void DFS(AbstractBinaryTree<E> node, List<AbstractBinaryTree<E>> result){
+        if(node!=null){
+            result.add(node);
+            DFS(node.getLeft(), result);
+            DFS(node.getRight(), result);
+        }
+    }
+    @Override
+    public List<AbstractBinaryTree<E>> BFS() {
+        List<AbstractBinaryTree<E>> result = new ArrayList<>();
+        Queue<AbstractBinaryTree<E>> queue = new LinkedList<>();
+        queue.offer(this);
+
+        while (!queue.isEmpty()) {
+            AbstractBinaryTree<E> node = queue.poll();
+            result.add(node);
+
+            if (node.getLeft() != null) {
+                queue.offer(node.getLeft());
+            }
+            if (node.getRight() != null) {
+                queue.offer(node.getRight());
+            }
+        }
+        return result;
     }
 }

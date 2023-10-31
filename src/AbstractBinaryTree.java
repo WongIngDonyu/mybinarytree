@@ -11,5 +11,7 @@ public interface AbstractBinaryTree<E> {
     List<AbstractBinaryTree<E>>inOrder();
     List<AbstractBinaryTree<E>>postOrder();
     void forEachInOrder(Consumer<E> consumer);
+    List<AbstractBinaryTree<E>> DFS();
+    List<AbstractBinaryTree<E>> BFS();
 
 }
