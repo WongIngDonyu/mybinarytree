@@ -3,14 +3,14 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class BinaryTree<E> implements AbstractBinaryTree<E>{
+    private E key;
     private BinaryTree<E> leftChild;
     private BinaryTree<E> rightChild;
-    private E key;
 
-    public BinaryTree(BinaryTree<E> leftChild, BinaryTree<E> rightChild, E key) {
+    public BinaryTree(E key, BinaryTree<E> leftChild, BinaryTree<E> rightChild) {
+        this.key = key;
         this.leftChild = leftChild;
         this.rightChild = rightChild;
-        this.key = key;
     }
 
     @Override
@@ -65,16 +65,38 @@ public class BinaryTree<E> implements AbstractBinaryTree<E>{
 
     @Override
     public List<AbstractBinaryTree<E>> inOrder() {
-        return null;
+        List<AbstractBinaryTree<E>> result = new ArrayList<>();
+        inOrder(this, result);
+        return result;
     }
-
+    private void inOrder(AbstractBinaryTree<E> node, List<AbstractBinaryTree<E>> result){
+        if (node!=null){
+            inOrder(node.getLeft(), result);
+            result.add(node);
+            inOrder(node.getRight(), result);
+        }
+    }
     @Override
     public List<AbstractBinaryTree<E>> postOrder() {
-        return null;
+        List<AbstractBinaryTree<E>> result = new ArrayList<>();
+        postOrder(this, result);
+        return result;
     }
-
+    private void postOrder(AbstractBinaryTree<E> node, List<AbstractBinaryTree<E>> result){
+        if (node!=null){
+            postOrder(node.getLeft(), result);
+            postOrder(node.getRight(), result);
+            result.add(node);
+        }
+    }
     @Override
-    public void forEachInOrder(Consumer consumer) {
-
+    public void forEachInOrder(Consumer<E> consumer) {
+        if(leftChild!=null){
+            leftChild.forEachInOrder(consumer);
+        }
+        consumer.accept(key);
+        if(rightChild!=null){
+            rightChild.forEachInOrder(consumer);
+        }
     }
 }
