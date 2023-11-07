@@ -13,5 +13,6 @@ public interface AbstractBinaryTree<E> {
     void forEachInOrder(Consumer<E> consumer);
     List<AbstractBinaryTree<E>> DFS();
     List<AbstractBinaryTree<E>> BFS();
-
+    void removeLeavesAndPrint();
+    void printBeautifulTree();
 }

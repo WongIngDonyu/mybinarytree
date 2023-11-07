@@ -22,4 +22,6 @@ public interface AbstractBinarySearchTree <E extends Comparable<E>> {
         Node<E>getLeft();
         Node<E>getRight();
         E getValue();
+
+
 }

@@ -14,7 +14,8 @@ public class Main {
             System.out.print(node.getKey()+" ");
         }
         System.out.println(" ");
-        System.out.println(binaryTree.asIndentedPreOrder(1));
+        //System.out.println(binaryTree.asIndentedPreOrder(1));
+        binaryTree.printBeautifulTree();
         List<AbstractBinaryTree<Integer>> result1 = binaryTree.BFS();
         for (AbstractBinaryTree<Integer> node : result1){
             System.out.print(node.getKey()+" ");
@@ -43,5 +44,13 @@ public class Main {
         System.out.println("Корень: " + root.value);
         System.out.println("Левый ребёнок: " + left.value);
         System.out.println("Правый ребёнок: " + right.value);
+        BinaryTree<Integer> root1 = new BinaryTree<>(9,
+                new BinaryTree<>(2,
+                        new BinaryTree<>(1,null, null),
+                        new BinaryTree<>(3, null,null)),
+                new BinaryTree<>(6,
+                        new BinaryTree<>(5, null,null),
+                        new BinaryTree<>(7, new BinaryTree<>(10, null,null),null)));
+        root1.removeLeavesAndPrint();
     }
 }
